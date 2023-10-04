@@ -163,9 +163,11 @@ class PinoWebpackPlugin {
                 new webpack.sources.ConcatSource(
                   fileBanner,
                   '\n',
-                  `globalThis.__bundlerPathsOverrides = {${dependenciesFiles.map(
-                    ([workerId, file]) => `'${workerId}': pinoWebpackAbsolutePath('${relativePath}${sep}${file}')`
-                  )}};`,
+                  `globalThis.__bundlerPathsOverrides = {${dependenciesFiles
+                    .sort()
+                    .map(
+                      ([workerId, file]) => `'${workerId}': pinoWebpackAbsolutePath('${relativePath}${sep}${file}')`
+                    )}};`,
                   '\n',
                   '/* End of pino-webpack-plugin additions */',
                   '\n\n',
